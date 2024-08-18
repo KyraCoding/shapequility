@@ -15,20 +15,21 @@
   <body>
     <script type="module">
       const app = new PIXI.Application();
-      // Config
-      const xWidth = 10
-      const yWidth = 10
-      const xGap = app.view.width / xWidth;
-      const yGap = app.view.height / yWidth;
-      const colors = ["#B8D0EB", "#B298DC", "#A663CC", "#6F2DBD"];
-      await app.init({ background: "#B9FAF8", resizeTo: window });
+      const graphics = new PIXI.Graphics();
+      await app.init({ background: "#B9FAF8",resizeTo: window});
       document.body.appendChild(app.canvas);
-      
-      for (var x = 0; x < XWIDTH; x++) {
-        for (var y = 0; y < yWIDTH; y++) {
-          const graphics = new PIXI.Graphics();
-          const rectX = x*xGap
-          const rectY = y*yGap
+      // Config
+      const colors = ["#7400B8", "#6930C3", "#5E60CE", "#5390D9", "#4EA8DE","#48BFE3", "#56CFE1", "#64DFDF", "#72EFDD", "#80FFDB"];
+      const xLength = 10;
+      const yLength = 10;
+      const xGap = app.canvas.width / xLength;
+      const yGap = app.canvas.height / yLength;
+
+      for (var x = 0; x < xLength; x++) {
+        for (var y = 0; y < yLength; y++) {
+          const rectX = x * xGap;
+          const rectY = y * yGap;
+          graphics.rect(rectX+10, rectY+10, rectX + xGap-10, rectY + yGap-10);
           graphics.fill(colors[Math.floor(Math.random() * colors.length)]);
           app.stage.addChild(graphics);
         }
