@@ -1,18 +1,38 @@
-<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="icon" href="https://glitch.com/favicon.ico" />
     <title>shapequility</title>
-    <link rel="stylesheet" href="/style.css" />
+    <style>
+      body {
+        margin: 0;
+        width: 100%;
+        height: 100%;
+      }
+    </style>
     <script src="https://pixijs.download/release/pixi.js"></script>
   </head>
   <body>
     <script type="module">
       const app = new PIXI.Application();
-      await app.init({ width: 640, height: 360 });
+      // Config
+      const xWidth = 10
+      const yWidth = 10
+      const xGap = app.view.width / xWidth;
+      const yGap = app.view.height / yWidth;
+      const colors = ["#B8D0EB", "#B298DC", "#A663CC", "#6F2DBD"];
+      await app.init({ background: "#B9FAF8", resizeTo: window });
       document.body.appendChild(app.canvas);
+      
+      for (var x = 0; x < XWIDTH; x++) {
+        for (var y = 0; y < yWIDTH; y++) {
+          const graphics = new PIXI.Graphics();
+          const rectX = x*xGap
+          const rectY = y*yGap
+          graphics.fill(colors[Math.floor(Math.random() * colors.length)]);
+          app.stage.addChild(graphics);
+        }
+      }
     </script>
   </body>
 </html>
